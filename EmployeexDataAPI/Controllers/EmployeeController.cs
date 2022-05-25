@@ -33,7 +33,7 @@ namespace EmployeexDataAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Employee>>> Addemployee(Employee employee)
+        public async Task<ActionResult<List<Employee>>> AddEmployee(Employee employee)
         {
             context.tblStaff.Add(employee);
             await context.SaveChangesAsync();
@@ -41,7 +41,7 @@ namespace EmployeexDataAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<List<Employee>>> Updateemployee(Employee req)
+        public async Task<ActionResult<List<Employee>>> UpdateEmployee(Employee req)
         {
             var employee = await context.tblStaff.FindAsync(req.ID);
             if (employee == null)
@@ -62,7 +62,7 @@ namespace EmployeexDataAPI.Controllers
 
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Employee>> Delete(Int64 id)
+        public async Task<ActionResult<Employee>> DeleteEmployee(Int64 id)
         {
             var employee = await context.tblStaff.FindAsync(id);
             if (employee == null)
