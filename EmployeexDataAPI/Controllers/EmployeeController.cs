@@ -20,13 +20,13 @@ namespace EmployeexDataAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Employee>>> Get()
         {
-            return Ok(await context.tblStaff.ToListAsync());
+            return Ok(await context.Employees.ToListAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Employee>> Get(Int64 id)
         {
-            var employee = await context.tblStaff.FindAsync(id);
+            var employee = await context.Employees.FindAsync(id);
             if (employee == null)
                 return BadRequest("employee not found.");
             return Ok(employee);
@@ -35,15 +35,15 @@ namespace EmployeexDataAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Employee>>> AddEmployee(Employee employee)
         {
-            context.tblStaff.Add(employee);
+            context.Employees.Add(employee);
             await context.SaveChangesAsync();
-            return Ok(await context.tblStaff.ToListAsync());
+            return Ok(await context.Employees.ToListAsync());
         }
 
         [HttpPut]
         public async Task<ActionResult<List<Employee>>> UpdateEmployee(Employee req)
         {
-            var employee = await context.tblStaff.FindAsync(req.ID);
+            var employee = await context.Employees.FindAsync(req.ID);
             if (employee == null)
                 return BadRequest("employee not found.");
             employee.Name = req.Name;
@@ -57,18 +57,18 @@ namespace EmployeexDataAPI.Controllers
 
             await context.SaveChangesAsync();
 
-            return Ok(await context.tblStaff.ToListAsync());
+            return Ok(await context.Employees.ToListAsync());
         }
 
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Employee>> DeleteEmployee(Int64 id)
         {
-            var employee = await context.tblStaff.FindAsync(id);
+            var employee = await context.Employees.FindAsync(id);
             if (employee == null)
                 return BadRequest("employee not found.");
 
-            context.tblStaff.Remove(employee);
+            context.Employees.Remove(employee);
 
             await context.SaveChangesAsync();
 
